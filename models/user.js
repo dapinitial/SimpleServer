@@ -25,6 +25,13 @@ userSchema.pre('save', function(next) { // `pre` means before 'save' invoked, ru
   });
 });
 
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) { return callback(err); }
+    callback(null, isMatch);
+  });
+}
+
 // Create the Model Class
 const ModelClass = mongoose.model('user', userSchema);
 
