@@ -1,4 +1,15 @@
+// using JavaScript Web Tokens and bCrypt:
+// https://lockmedown.com/node-js-password-storage-bcrypt/
+// npm install --save --save-exact bcrypt@0.8.7
+
+const jwt = require('jwt-simple');
 const User = require('../models/user');
+const config = require('../config');
+
+function tokenForUser(user) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+}
 
 exports.signup = function(req, res, next) {
   const email = req.body.email;
@@ -30,7 +41,7 @@ exports.signup = function(req, res, next) {
     user.save(function(err) {
       if (err) { return next(err); }
 
-      res.json({ success: true });
+      res.json({ token: tokenForUser(user) });
     });
 
     // Respond to request indicating the user was created
