@@ -8,6 +8,7 @@ const router = require('./router');
 const mongoose = require('mongoose');
 
 // DB Setup
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:auth/auth');
 
 // App Setup
