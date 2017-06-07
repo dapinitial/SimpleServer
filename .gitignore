@@ -24,7 +24,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
 ### Linux ###
 *~
 
@@ -39,7 +38,6 @@ Temporary Items
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
 
 ### Node ###
 # Logs
@@ -90,8 +88,10 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-
 # End of https://www.gitignore.io/api/macos,linux,node
 
 # Custom Ignore Build Folder
 build/
+
+# Secret JWT!
+config.js
