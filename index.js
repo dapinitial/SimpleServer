@@ -10,7 +10,17 @@ const cors = require("cors");
 
 // DB Setup
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:auth/auth");
+mongoose.connect(
+  "mongodb://localhost:auth/auth",
+  { useMongoClient: true },
+  function(err) {
+    if (err) {
+      console.log("error: ", err);
+    } else {
+      console.log("connected to the database");
+    }
+  }
+);
 
 // App Setup
 app.use(morgan("combined"));
