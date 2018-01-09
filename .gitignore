@@ -94,4 +94,4 @@ jspm_packages
 build/
 
 # Secret JWT!
-config.js
+#config.js
